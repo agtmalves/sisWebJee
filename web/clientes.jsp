@@ -10,6 +10,7 @@
     Connection conexao = null;   //Variable for Connection with DB
     Statement instrucao = null;  //Variable for Send and process SQL instructions which are sent to DB
     ResultSet resultado = null;  //Variable for Store results
+    String ordem;
 %>
 
 <!DOCTYPE html>
@@ -19,7 +20,10 @@
         Class.forName("org.postgresql.Driver");     //Inform which driver load
         conexao = DriverManager.getConnection("***REMOVED***");     //Path to connect with DB
         instrucao = conexao.createStatement();      //Initialize object to send SQL's code
-
+        ordem = request.getParameter("ordem");
+        if(ordem == null){
+            ordem = "codigo";
+        }
         resultado = instrucao.executeQuery("SELECT * FROM cliente ORDER BY " + ordem);  //Initialize object to store DB's results
 %>
 
@@ -37,9 +41,12 @@
         <div align="center">
             <table border="1">
                 <tr>
-                    <td>Código</td><td>Nome</td><td>CPF</td><td>E-mail</td>
+                    <td><a href="clientes.jsp?ordem=codigo"> Código</a></td>
+                    <td><a href="clientes.jsp?ordem=nome"> Nome<a></td>
+                    <td>CPF</td>
+                    <td>E-mail</td>
                 </tr>
-                <%                    
+                <%
                     int cont = 0;
                     while (resultado.next()) {
                 %>
