@@ -6,7 +6,38 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+<%!
+    Connection conexao = null;   //Connection with DB
+    Statement instrucao = null;  //Send and process SQL instructions which are sent to DB
+    ResultSet resultado = null;  // Store results
+%>
+
 <!DOCTYPE html>
+
+<%
+    try {
+        Class.forName("org.postgresql.Driver");     // Inform which driver load
+        conexao = DriverManager.getConnection("***REMOVED***");
+        instrucao = conexao.createStatement();
+        
+        resultado = instrucao.executeQuery("SELECT * FROM cliente ORDER BY " + ordem);
+    } catch (ClassNotFoundException ce) {
+        out.println("Não foi possível encontrar o driver PostgreSQL! " + ce);
+    } catch (SQLException se) {
+        out.println("Erro ao trabalhar com o banco de dados!" + se);
+    } finally {
+        if(resultado != null) {
+            resultado.close();
+        }
+        if(instrucao != null) {
+            instrucao.close();
+        }
+        if(conexao != null) {
+            conexao.close();
+        }
+    }
+    %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
