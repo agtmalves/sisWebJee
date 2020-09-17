@@ -21,7 +21,7 @@
         conexao = DriverManager.getConnection("***REMOVED***");     //Path to connect with DB
         instrucao = conexao.createStatement();      //Initialize object to send SQL's code
         ordem = request.getParameter("ordem");
-        if(ordem == null){
+        if (ordem == null) {
             ordem = "codigo";
         }
         resultado = instrucao.executeQuery("SELECT * FROM cliente ORDER BY " + ordem);  //Initialize object to store DB's results
@@ -41,48 +41,52 @@
         <div align="center">
             <table border="1">
                 <tr>
-                    <td><a href="clientes.jsp?ordem=codigo"> Código</a></td>
-                    <td><a href="clientes.jsp?ordem=nome"> Nome<a></td>
-                    <td>CPF</td>
-                    <td>E-mail</td>
-                </tr>
-                <%
-                    int cont = 0;
-                    while (resultado.next()) {
-                %>
-                <tr>
-                    <td><%= resultado.getInt("codigo")%></td>
-                    <td><%= resultado.getString("nome")%></td>
-                    <td><%= resultado.getString("cpf")%></td>
-                    <td><%= resultado.getString("email")%></td>
-                </tr>
-                <%
-                        cont++;
-                    }
-                %>    
-                <tr>
-                    <td colspan="4">Quantidade de Clientes cadastrados é: <%= cont%> </td>
-                </tr>
-            </table>
-        </div>
-        <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
-    </body>
-</html>
+                    <td><a href="clientes.jsp?ordem=codigo">Código</a></td>
+                    <td><a href="clientes.jsp?ordem=nome">Nome<a></td>
+                                <td>CPF</td>
+                                <td>E-mail</td>
+                                </tr>
+                                <%
+                                    int cont = 0;
+                                    while (resultado.next()) {
+                                %>
+                                <tr>
+                                    <td><%= resultado.getInt("codigo")%></td>
+                                    <td><%= resultado.getString("nome")%></td>
+                                    <td><%= resultado.getString("cpf")%></td>
+                                    <td>
+                                        <a href="mailto:<%= resultado.getString("email")%>">
+                                            <%= resultado.getString("email")%>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <%
+                                        cont++;
+                                    }
+                                %>    
+                                <tr>
+                                    <td colspan="4">Quantidade de Clientes cadastrados é: <%= cont%> </td>
+                                </tr>
+                                </table>
+                                </div>
+                                <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
+                                </body>
+                                </html>
 
-<%
-    } catch (ClassNotFoundException ce) {
-        out.println("Não foi possível encontrar o driver PostgreSQL! " + ce);
-    } catch (SQLException se) {
-        out.println("Erro ao trabalhar com o banco de dados!" + se);
-    } finally {
-        if (resultado != null) {
-            resultado.close();
-        }
-        if (instrucao != null) {
-            instrucao.close();
-        }
-        if (conexao != null) {
-            conexao.close();
-        }
-    }
-%>
+                                <%
+                                    } catch (ClassNotFoundException ce) {
+                                        out.println("Não foi possível encontrar o driver PostgreSQL! " + ce);
+                                    } catch (SQLException se) {
+                                        out.println("Erro ao trabalhar com o banco de dados!" + se);
+                                    } finally {
+                                        if (resultado != null) {
+                                            resultado.close();
+                                        }
+                                        if (instrucao != null) {
+                                            instrucao.close();
+                                        }
+                                        if (conexao != null) {
+                                            conexao.close();
+                                        }
+                                    }
+                                %>
