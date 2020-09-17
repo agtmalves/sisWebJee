@@ -10,7 +10,7 @@
     Connection conexao = null;   //Variable for Connection with DB
     Statement instrucao = null;  //Variable for Send and process SQL instructions which are sent to DB
     ResultSet resultado = null;  //Variable for Store results
-    String ordem;
+    String ordem, acao;
 %>
 
 <!DOCTYPE html>
@@ -20,6 +20,15 @@
         Class.forName("org.postgresql.Driver");     //Inform which driver load
         conexao = DriverManager.getConnection("***REMOVED***");     //Path to connect with DB
         instrucao = conexao.createStatement();      //Initialize object to send SQL's code
+        
+        acao = request.getParameter("acao");
+        if(acao == null){
+            acao = "listar";
+        }
+        if(acao.equals("excluir")) {
+            instrucao.executeUpdate("DELETE FROM cliente WHERE codigo=" + request.getParameter("codigo"));
+        }
+        
         ordem = request.getParameter("ordem");
         if (ordem == null) {
             ordem = "codigo";
@@ -62,8 +71,8 @@
                                     </td>
                                     <td>
                                         <a href="clientes.jsp?acao=excluir&codigo=<%= resultado.getInt("codigo")%>">
-                                        [Excluir]
-                                        </a> |
+                                        [Excluir]  
+                                        </a>|
                                         <a href="clientesAlterar.jsp?codigo=<%= resultado.getInt("codigo")%>">
                                         [Alterar]
                                         </a>
