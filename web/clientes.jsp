@@ -45,6 +45,7 @@
                     <td><a href="clientes.jsp?ordem=nome">Nome<a></td>
                                 <td>CPF</td>
                                 <td>E-mail</td>
+                                <td>Opções</td>
                                 </tr>
                                 <%
                                     int cont = 0;
@@ -59,13 +60,21 @@
                                             <%= resultado.getString("email")%>
                                         </a>
                                     </td>
+                                    <td>
+                                        <a href="clientes.jsp?acao=excluir&codigo=<%= resultado.getInt("codigo")%>">
+                                        [Excluir]
+                                        </a> |
+                                        <a href="clientesAlterar.jsp?codigo=<%= resultado.getInt("codigo")%>">
+                                        [Alterar]
+                                        </a>
+                                    </td>
                                 </tr>
                                 <%
                                         cont++;
                                     }
                                 %>    
                                 <tr>
-                                    <td colspan="4">Quantidade de Clientes cadastrados é: <%= cont%> </td>
+                                    <td colspan="5">Quantidade de Clientes cadastrados é: <%= cont%> </td>
                                 </tr>
                                 </table>
                                 </div>
