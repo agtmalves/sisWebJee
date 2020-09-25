@@ -19,7 +19,7 @@
     try {
         Class.forName("org.postgresql.Driver");     //Inform which driver load
         conexao = DriverManager.getConnection("***REMOVED***");     //Path to connect with DB
-        instrucao = conexao.createStatement();      //Initialize object to send SQL's code
+        instrucao = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);      //Initialize object to send SQL's code
         
         acao = request.getParameter("acao");
         if(acao == null){
