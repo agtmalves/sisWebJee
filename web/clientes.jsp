@@ -44,7 +44,11 @@
     <body>
         <h1 align="center">Sistema de Cadastro de Clientes</h1>
         <p align="center">
-            <a href="clientesCadastrar.jsp">[Cadastrar]</a> |
+            <% 
+                resultado.last();
+                %>
+            <a href="clientesCadastrar.jsp?codigoNovo=<%=resultado.getRow()+1 %> ">[Cadastrar]</a> |
+            <% resultado.beforeFirst(); %>
             <a href="clientesImprimir.jsp">[Imprimir]</a>
         </p>
         <div align="center">

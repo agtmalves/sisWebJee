@@ -5,7 +5,17 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    String codigoNovo; %>
 <!DOCTYPE html>
+
+<%
+    codigoNovo = request.getParameter("codigoNovo");
+    if(codigoNovo ==null) {
+        codigoNovo="0";
+    }
+    %>
+    
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,7 +31,7 @@
         <form name="formCadastrar" method="post" action="clientes.jsp?acao=gravar">
             <p>
                 Código:
-                <input type="text" name="codigo" value="AUTOMATICO" disabled="true" /> - 
+                <input type="text" name="codigo" value="<%= codigoNovo %>" disabled="true" /> - 
                 Data de Cadastro: (dd-MM-aaaa)
                 <input type="text" name="datatela" value="DataHoje" size="16" maxlength="16" />
             </p>
@@ -85,7 +95,6 @@
             </p>
         </form>
 
-       
 
          <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
     </body>
