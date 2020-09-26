@@ -5,17 +5,24 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.Date, java.text.SimpleDateFormat" %>
+
 <%
-    String codigoNovo; %>
+    String codigoNovo, hoje;
+    Date data = new Date();
+    SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
+%>
+
 <!DOCTYPE html>
 
 <%
     codigoNovo = request.getParameter("codigoNovo");
-    if(codigoNovo ==null) {
-        codigoNovo="0";
+    if (codigoNovo == null) {
+        codigoNovo = "0";
     }
-    %>
-    
+    hoje=dataFormatada.format(data);
+%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,9 +38,10 @@
         <form name="formCadastrar" method="post" action="clientes.jsp?acao=gravar">
             <p>
                 Código:
-                <input type="text" name="codigo" value="<%= codigoNovo %>" disabled="true" /> - 
+                <input type="text" name="codigo" value="<%= codigoNovo%>" disabled="true" /> - 
                 Data de Cadastro: (dd-MM-aaaa)
-                <input type="text" name="datatela" value="DataHoje" size="16" maxlength="16" />
+                <input type="text" name="datatela" value="<%= hoje %>" disabled="true" size="10" maxlength="10" />
+                <input type="hidden" name="datacad" value="<%= hoje%>" />
             </p>
             <p>
                 Nome:
@@ -96,6 +104,6 @@
         </form>
 
 
-         <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
+        <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
     </body>
 </html>
