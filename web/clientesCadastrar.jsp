@@ -5,9 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.Date, java.text.SimpleDateFormat" %>
+<%@page import="java.util.Date, java.text.SimpleDateFormat, java.sql.*" %>
 
 <%
+    Connection conexao = null;   //Variable for Connection with DB
+    Statement instrucao = null;  //Variable for Send and process SQL instructions which are sent to DB
+    ResultSet resultado = null;  //Variable for Store results
+
     String codigoNovo, hoje;
     Date data = new Date();
     SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
@@ -16,11 +20,16 @@
 <!DOCTYPE html>
 
 <%
-    codigoNovo = request.getParameter("codigoNovo");
-    if (codigoNovo == null) {
-        codigoNovo = "0";
-    }
-    hoje=dataFormatada.format(data);
+    try {
+        Class.forName("org.postgresql.Driver");     //Inform which driver load
+        conexao = DriverManager.getConnection("***REMOVED***");     //Path to connect with DB
+        instrucao = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);      //Initialize object to send SQL's code
+
+        codigoNovo = request.getParameter("codigoNovo");
+        if (codigoNovo == null) {
+            codigoNovo = "0";
+        }
+        hoje = dataFormatada.format(data);
 %>
 
 <html>
@@ -40,7 +49,7 @@
                 Código:
                 <input type="text" name="codigo" value="<%= codigoNovo%>" disabled="true" /> - 
                 Data de Cadastro: (dd-MM-aaaa)
-                <input type="text" name="datatela" value="<%= hoje %>" disabled="true" size="10" maxlength="10" />
+                <input type="text" name="datatela" value="<%= hoje%>" disabled="true" size="10" maxlength="10" />
                 <input type="hidden" name="datacad" value="<%= hoje%>" />
             </p>
             <p>
@@ -50,8 +59,22 @@
 
             <p>
                 Endereço:
-                <select>
-                    <option></option>
+                <select name="endereco">
+                    <%
+                        ResultSet resultadoEndereco = instrucao.executeQuery("SELECT * FROM endereco ORDER BY nome");
+                        if (resultadoEndereco != null) {
+                            while (resultadoEndereco.next()) {
+                    %>
+                    <option value="<%= resultadoEndereco.getInt("codigo")%>">
+                        <%= resultadoEndereco.getString("nome")%>
+                    </option>
+                    <%
+                            }
+                        }
+                        if (resultadoEndereco != null) {
+                            resultadoEndereco.close();
+                        }
+                    %>
                 </select>
             </p>
 
@@ -62,11 +85,60 @@
 
             <p>
                 Bairro:
-                <select><option></option></select> -
+                <select name="bairro">
+                    <%
+                        ResultSet resultadoBairro = instrucao.executeQuery("SELECT * FROM bairro ORDER BY nome");
+                        if (resultadoBairro != null) {
+                            while (resultadoBairro.next()) {
+                    %>
+                    <option value="<%= resultadoBairro.getInt("codigo")%>">
+                        <%= resultadoBairro.getString("nome")%>
+                    </option>
+                    <%
+                            }
+                        }
+                        if (resultadoBairro != null) {
+                            resultadoBairro.close();
+                        }
+                    %>
+                </select> -
                 Cidade:
-                <select><option></option></select> -
+                <select name="cidade">
+                     <%
+                        ResultSet resultadoCidade = instrucao.executeQuery("SELECT * FROM cidade ORDER BY nome");
+                        if (resultadoCidade != null) {
+                            while (resultadoCidade.next()) {
+                    %>
+                    <option value="<%= resultadoCidade.getInt("codigo")%>">
+                        <%= resultadoCidade.getString("nome")%>
+                    </option>
+                    <%
+                            }
+                        }
+                        if (resultadoCidade != null) {
+                            resultadoCidade.close();
+                        }
+                    %>
+                
+                </select> -
                 Estado:
-                <select><option></option></select>
+                <select name="estado">
+                      <%
+                        ResultSet resultadoEstado = instrucao.executeQuery("SELECT * FROM estado ORDER BY nome");
+                        if (resultadoEstado != null) {
+                            while (resultadoEstado.next()) {
+                    %>
+                    <option value="<%= resultadoEstado.getInt("codigo")%>">
+                        <%= resultadoEstado.getString("nome")%>
+                    </option>
+                    <%
+                            }
+                        }
+                        if (resultadoEstado != null) {
+                            resultadoEstado.close();
+                        }
+                    %>
+                </select>
             </p>
 
             <p>
@@ -106,4 +178,22 @@
 
         <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
     </body>
+
+    <%
+        } catch (ClassNotFoundException ce) {
+            out.println("Não foi possível encontrar o driver PostgreSQL! " + ce);
+        } catch (SQLException se) {
+            out.println("Erro ao trabalhar com o banco de dados!" + se);
+        } finally {
+            if (resultado != null) {
+                resultado.close();
+            }
+            if (instrucao != null) {
+                instrucao.close();
+            }
+            if (conexao != null) {
+                conexao.close();
+            }
+        }
+    %>
 </html>
