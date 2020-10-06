@@ -34,6 +34,7 @@
 
 <html>
     <head>
+        <script language="javascrip" src="util/funcoes.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Clientes</title>
     </head>
@@ -104,7 +105,7 @@
                 </select> -
                 Cidade:
                 <select name="cidade">
-                     <%
+                    <%
                         ResultSet resultadoCidade = instrucao.executeQuery("SELECT * FROM cidade ORDER BY nome");
                         if (resultadoCidade != null) {
                             while (resultadoCidade.next()) {
@@ -119,11 +120,11 @@
                             resultadoCidade.close();
                         }
                     %>
-                
+
                 </select> -
                 Estado:
                 <select name="estado">
-                      <%
+                    <%
                         ResultSet resultadoEstado = instrucao.executeQuery("SELECT * FROM estado ORDER BY nome");
                         if (resultadoEstado != null) {
                             while (resultadoEstado.next()) {
@@ -143,12 +144,19 @@
 
             <p>
                 RG: <input type="text" name="rg" size="18" maxlength="18" />
-                CPF: <input type="text" name="cpf" size="18" maxlengt="18" />
+                CPF: <input type="text" name="cpf" size="14" maxlengt="14"
+                            onkeypress="mascaraCampo(this, '###.###.###-##');
+                                    return somenteNumero(event)"
+                            />
             </p>
 
             <p>
-                TelFixo: (xx-xxxx-xxxx) <input type="text" name="telfixo" size="16" maxlength="16" />
-                TelCelular: (xx-Xxxxx-xxxx) <input type="text" name="telcel" size="16" maxlength="16" />
+                TelFixo: (xx-xxxx-xxxx) <input type="text" name="telfixo" size="12" maxlength="12"
+                                               onkeypress="mascaraCampo(this, '##-####-####');
+                                    return somenteNumero(event)"/>
+                TelCelular: (xx-Xxxxx-xxxx) <input type="text" name="telcel" size="13" maxlength="13"
+                                                   onkeypress="mascaraCampo(this, '##-#####-####');
+                                    return somenteNumero(event)"/>/>
             </p>
 
             <p>
@@ -162,7 +170,9 @@
                 <input type="radio" name="sexo" id="sexo_F" value="F" />
                 Feminino -
                 Data de Nascimento: (dd-MM-aaaa)
-                <input type="text" name="datanasc" size="16" maxlength="16" />
+                <input type="text" name="datanasc" size="10" maxlength="10" 
+                       onkeypress="mascaraCampo(this, '##-##-####');
+                                    return somenteNumero(event)"/>/>
             </p>
 
             <p>
