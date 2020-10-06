@@ -15,19 +15,18 @@ function mascaraCampo(item, formato) {
 }
 
 function somenteNumero(e) {
-    navegador = /msie/i.text(navegador.userAgent);
-    if (navegador) {
+    navegador = /msie/i.text(navegator.userAgent);
+    if (navegador)
         var caractere = event.keyCode;
-    } else {
+    else
         var caractere = e.which;
-    }
-    if (caractere > 47 && caractere < 58) {
+
+    if (caractere > 47 && caractere < 58)
         return true;
-    } else {
-        if (caractere != 8) {
+    else {
+        if (caractere != 8)
             return false;
-        } else {
-            return true
-        }
+        else
+            return true;
     }
 }
