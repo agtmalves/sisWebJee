@@ -34,7 +34,7 @@
 
 <html>
     <head>
-        <script language="javascrip" src="util/funcoes.js"></script>
+        <script language="javascript" src="util/funcoes.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Clientes</title>
     </head>
@@ -144,7 +144,7 @@
 
             <p>
                 RG: <input type="text" name="rg" size="18" maxlength="18" />
-                CPF: <input type="text" name="cpf" size="14" maxlengt="14"
+                CPF: <input type="text" name="cpf" size="14" maxlength="14"
                             onkeypress="mascaraCampo(this, '###.###.###-##');
                                     return somenteNumero(event)"
                             />
@@ -156,7 +156,7 @@
                                     return somenteNumero(event)"/>
                 TelCelular: (xx-Xxxxx-xxxx) <input type="text" name="telcel" size="13" maxlength="13"
                                                    onkeypress="mascaraCampo(this, '##-#####-####');
-                                    return somenteNumero(event)"/>/>
+                                    return somenteNumero(event)"/>
             </p>
 
             <p>
@@ -172,7 +172,7 @@
                 Data de Nascimento: (dd-MM-aaaa)
                 <input type="text" name="datanasc" size="10" maxlength="10" 
                        onkeypress="mascaraCampo(this, '##-##-####');
-                                    return somenteNumero(event)"/>/>
+                                    return somenteNumero(event)"/>
             </p>
 
             <p>
