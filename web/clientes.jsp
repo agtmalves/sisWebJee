@@ -20,15 +20,37 @@
         Class.forName("org.postgresql.Driver");     //Inform which driver load
         conexao = DriverManager.getConnection("***REMOVED***");     //Path to connect with DB
         instrucao = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);      //Initialize object to send SQL's code
-        
+
         acao = request.getParameter("acao");
-        if(acao == null){
+        if (acao == null) {
             acao = "listar";
         }
-        if(acao.equals("excluir")) {
+        if (acao.equals("excluir")) {
             instrucao.executeUpdate("DELETE FROM cliente WHERE codigo=" + request.getParameter("codigo"));
+        } else if (acao.equals("gravar")) {
+            String sql = "INSERT INTO cliente ("
+                    + "nome,endereco,numero,complemento,bairro,cidade,estado,"
+                    + "rg,cpf,telfixo,telcel,email,sexo,datanasc,datacad,obs)"
+                    + "VALUES ('"
+                    + request.getParameter("nome").toUpperCase() + "',"
+                    + request.getParameter("endereco") + ",'"
+                    + request.getParameter("numero") + "','"
+                    + request.getParameter("complemento") + "',"
+                    + request.getParameter("bairro") + ","
+                    + request.getParameter("cidade") + ","
+                    + request.getParameter("estado") + ",'"
+                    + request.getParameter("rg") + "','"
+                    + request.getParameter("cpf") + "','"
+                    + request.getParameter("telfixo") + "','"
+                    + request.getParameter("telcel") + "','"
+                    + request.getParameter("email") + "','"
+                    + request.getParameter("sexo") + "','"
+                    + request.getParameter("datanasc") + "','"
+                    + request.getParameter("datacad") + "','"
+                    + request.getParameter("obs").trim() + "')";
+            instrucao.executeUpdate(sql);
         }
-        
+
         ordem = request.getParameter("ordem");
         if (ordem == null) {
             ordem = "codigo";
@@ -44,10 +66,10 @@
     <body>
         <h1 align="center">Sistema de Cadastro de Clientes</h1>
         <p align="center">
-            <% 
+            <%
                 resultado.last();
-                %>
-            <a href="clientesCadastrar.jsp?codigoNovo=<%=resultado.getRow()+1 %> ">[Cadastrar]</a> |
+            %>
+            <a href="clientesCadastrar.jsp?codigoNovo=<%=resultado.getRow() + 1%> ">[Cadastrar]</a> |
             <% resultado.beforeFirst(); %>
             <a href="clientesImprimir.jsp">[Imprimir]</a>
         </p>
@@ -75,10 +97,10 @@
                                     </td>
                                     <td>
                                         <a href="clientes.jsp?acao=excluir&codigo=<%= resultado.getInt("codigo")%>">
-                                        [Excluir]  
+                                            [Excluir]  
                                         </a>|
                                         <a href="clientesAlterar.jsp?codigo=<%= resultado.getInt("codigo")%>">
-                                        [Alterar]
+                                            [Alterar]
                                         </a>
                                     </td>
                                 </tr>
