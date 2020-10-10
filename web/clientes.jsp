@@ -99,8 +99,8 @@
                                     <td>
                                         <a href="javascript:confirma('<%=resultado.getInt("codigo")%>', 'excluir','Confirmar Exclusão?','clientes.jsp')">
                                             [Excluir]  
-                                        </a>|
-                                        <a href="clientesAlterar.jsp?codigo=<%= resultado.getInt("codigo")%>">
+                                        </a> |
+                                        <a href="javascript:confirma('<%= resultado.getInt("codigo")%>','alterar','Confirmar Alteração?','clientesAlterar.jsp')">
                                             [Alterar]
                                         </a>
                                     </td>
