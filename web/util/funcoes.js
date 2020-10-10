@@ -24,8 +24,14 @@ function somenteNumero(e) {
     if (caractere > 47 && caractere < 58) {
         return true;
     } else if (caractere != 8) {
-            return false;
-        } else {
-            return true;
-        }   
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function confirma(parametro, acao, aviso, pagina) {
+    if (window.confirm(aviso)) {
+        location.href = pagina + "?acao=" + acao + "&codigo=" + parametro;
+    }
 }

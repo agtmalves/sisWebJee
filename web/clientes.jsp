@@ -60,6 +60,7 @@
 
 <html>
     <head>
+        <script language="javascript" src="util/funcoes.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Clientes</title>
     </head>
@@ -96,7 +97,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="clientes.jsp?acao=excluir&codigo=<%= resultado.getInt("codigo")%>">
+                                        <a href="javascript:confirma('<%=resultado.getInt("codigo")%>', 'excluir','Confirmar Exclusão?','clientes.jsp')">
                                             [Excluir]  
                                         </a>|
                                         <a href="clientesAlterar.jsp?codigo=<%= resultado.getInt("codigo")%>">
