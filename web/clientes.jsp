@@ -49,8 +49,27 @@
                     + request.getParameter("datacad") + "','"
                     + request.getParameter("obs").trim() + "')";
             instrucao.executeUpdate(sql);
+        } else if (acao.equals("alterar")) {
+            String sql = "UPDATE cliente SET "
+                    + "nome='" + request.getParameter("nome").toUpperCase() + "',"
+                    + "endereco=" + request.getParameter("endereco") + ","
+                    + "numero='" + request.getParameter("numero") + "',"
+                    + "complemento='" + request.getParameter("complemento") + "',"
+                    + "bairro=" + request.getParameter("bairro") + ","
+                    + "cidade=" + request.getParameter("cidade") + ","
+                    + "estado=" + request.getParameter("estado") + ","
+                    + "rg='" + request.getParameter("rg") + "',"
+                    + "cpf='" + request.getParameter("cpf") + "',"
+                    + "telfixo='" + request.getParameter("telfixo") + "',"
+                    + "telcel='" + request.getParameter("telcel") + "',"
+                    + "email='" + request.getParameter("email") + "',"
+                    + "sexo='" + request.getParameter("sexo") + "',"
+                    + "datanasc='" + request.getParameter("datanasc") + "',"
+                    + "datacad='" + request.getParameter("datacad") + "',"
+                    + "obs='" + request.getParameter("obs").trim() + "'"
+                    + "WHERE codigo=" + request.getParameter("codigoAlterar");
+            instrucao.executeUpdate(sql);
         }
-
         ordem = request.getParameter("ordem");
         if (ordem == null) {
             ordem = "codigo";
