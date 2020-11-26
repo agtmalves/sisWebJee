@@ -6,12 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.Date, java.text.SimpleDateFormat, java.sql.*" %>
-
+<%@include file="util/conexaoObjetos.jsp" %>
 <%
-    Connection conexao = null;   //Variable for Connection with DB
-    Statement instrucao = null;  //Variable for Send and process SQL instructions which are sent to DB
-    ResultSet resultado = null;  //Variable for Store results
-
     String codigoNovo, hoje;
     Date data = new Date();
     SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
@@ -19,17 +15,12 @@
 
 <!DOCTYPE html>
 
-<%
-    try {
-        Class.forName("org.postgresql.Driver");     //Inform which driver load
-        conexao = DriverManager.getConnection("***REMOVED***");     //Path to connect with DB
-        instrucao = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);      //Initialize object to send SQL's code
-
-        codigoNovo = request.getParameter("codigoNovo");
-        if (codigoNovo == null) {
-            codigoNovo = "0";
-        }
-        hoje = dataFormatada.format(data);
+<%@include file="util/conexaoIniciar.jsp" %>
+<%    codigoNovo = request.getParameter("codigoNovo");
+    if (codigoNovo == null) {
+        codigoNovo = "0";
+    }
+    hoje = dataFormatada.format(data);
 %>
 
 <html>
@@ -189,21 +180,5 @@
         <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
     </body>
 
-    <%
-        } catch (ClassNotFoundException ce) {
-            out.println("Não foi possível encontrar o driver PostgreSQL! " + ce);
-        } catch (SQLException se) {
-            out.println("Erro ao trabalhar com o banco de dados!" + se);
-        } finally {
-            if (resultado != null) {
-                resultado.close();
-            }
-            if (instrucao != null) {
-                instrucao.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
-        }
-    %>
+    <%@include file="util/conexaoFinalizar.jsp"  %>
 </html>

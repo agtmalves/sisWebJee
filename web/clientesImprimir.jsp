@@ -6,33 +6,23 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*, java.util.*,java.util.Date, java.text.SimpleDateFormat" %>
-
-<%!
-    Connection conexao = null;
-    Statement instrucao = null;
-    ResultSet resultado = null;
-
-    Date data;
+<%@include file="util/conexaoObjetos.jsp" %>
+<%!    Date data;
     SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
 
     String ordem, acao, campos;
 %>
 
 <!DOCTYPE html>
-<%
-    try {
-        Class.forName("org.postgresql.Driver");
-        conexao = DriverManager.getConnection("***REMOVED***");
-        instrucao = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-
-        acao = request.getParameter("acao");
-        ordem = request.getParameter("ordem");
-        if (acao == null) {
-            acao = "escolha";
-        }
-        if (ordem == null) {
-            ordem = "codigo";
-        }
+<%@include file="util/conexaoIniciar.jsp" %>
+<%    acao = request.getParameter("acao");
+    ordem = request.getParameter("ordem");
+    if (acao == null) {
+        acao = "escolha";
+    }
+    if (ordem == null) {
+        ordem = "codigo";
+    }
 %>
 <html>
     <head>
@@ -167,7 +157,7 @@
                 <tr>
                     <% for (int i = 0; i < listaCampos.size(); i++) {
                     %>
-                    <td> <%= listaCampos.get(i).substring(0, 1).toUpperCase() + listaCampos.get(i).substring(1) %></td>
+                    <td> <%= listaCampos.get(i).substring(0, 1).toUpperCase() + listaCampos.get(i).substring(1)%></td>
                     <%
                         }
                     %>
@@ -221,20 +211,4 @@
         <p align="center">copyright&copy; 2020 - sisWebJee&reg;</b></p>
 </body>
 </html>
-<%
-    } catch (ClassNotFoundException ce) {
-        out.println("Não foi possível encontrar o driver PostgreSQL! " + ce);
-    } catch (SQLException se) {
-        out.println("Erro ao trabalha com o banco de dados!" + se);
-    } finally {
-        if (resultado != null) {
-            resultado.close();
-        }
-        if (instrucao != null) {
-            instrucao.close();
-        }
-        if (conexao != null) {
-            conexao.close();
-        }
-    }
-%>
+<%@include file="util/conexaoFinalizar.jsp"  %>

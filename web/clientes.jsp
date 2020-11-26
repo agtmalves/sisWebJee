@@ -6,22 +6,16 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+<%@include file="util/conexaoObjetos.jsp" %>
 <%!
-    Connection conexao = null;   //Variable for Connection with DB
-    Statement instrucao = null;  //Variable for Send and process SQL instructions which are sent to DB
-    ResultSet resultado = null;  //Variable for Store results
     String ordem, acao;
 %>
 
 <!DOCTYPE html>
 
+<%@include file="util/conexaoIniciar.jsp" %>
 <%
-    try {
-        Class.forName("org.postgresql.Driver");     //Inform which driver load
-        conexao = DriverManager.getConnection("***REMOVED***");     //Path to connect with DB
-        instrucao = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);      //Initialize object to send SQL's code
-
-        acao = request.getParameter("acao");
+           acao = request.getParameter("acao");
         if (acao == null) {
             acao = "listar";
         }
@@ -138,20 +132,4 @@
                                 </body>
                                 </html>
 
-                                <%
-                                    } catch (ClassNotFoundException ce) {
-                                        out.println("Não foi possível encontrar o driver PostgreSQL! " + ce);
-                                    } catch (SQLException se) {
-                                        out.println("Erro ao trabalhar com o banco de dados!" + se);
-                                    } finally {
-                                        if (resultado != null) {
-                                            resultado.close();
-                                        }
-                                        if (instrucao != null) {
-                                            instrucao.close();
-                                        }
-                                        if (conexao != null) {
-                                            conexao.close();
-                                        }
-                                    }
-                                %>
+                                <%@include file="util/conexaoFinalizar.jsp"  %>
