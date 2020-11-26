@@ -153,10 +153,10 @@
             <p>
                 TelFixo: (xx-xxxx-xxxx) <input type="text" name="telfixo" size="12" maxlength="12"
                                                onkeypress="mascaraCampo(this, '##-####-####');
-                                    return somenteNumero(event);"/>
+                                                       return somenteNumero(event);"/>
                 TelCelular: (xx-Xxxxx-xxxx) <input type="text" name="telcel" size="13" maxlength="13"
                                                    onkeypress="mascaraCampo(this, '##-#####-####');
-                                    return somenteNumero(event);"/>
+                                                           return somenteNumero(event);"/>
             </p>
 
             <p>
@@ -172,7 +172,7 @@
                 Data de Nascimento: (dd-MM-aaaa)
                 <input type="text" name="datanasc" size="10" maxlength="10" 
                        onkeypress="mascaraCampo(this, '##-##-####');
-                                    return somenteNumero(event);"/>
+                               return somenteNumero(event);"/>
             </p>
 
             <p>
@@ -184,7 +184,7 @@
                 <input type="reset" name="btLimpar" value="Limpar" />
             </p>
         </form>
-
+        <p align="center"><a href="clientes.jsp">[Voltar]</a></p>
 
         <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
     </body>
