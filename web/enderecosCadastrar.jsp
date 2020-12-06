@@ -8,8 +8,8 @@
 %>
 
 <!DOCTYPE html>
-
 <%@include file="util/conexaoIniciar.jsp" %>
+
 <%    codigoNovo = request.getParameter("codigoNovo");
     if (codigoNovo == null) {
         codigoNovo = "0";
@@ -43,7 +43,7 @@
                 <input type="text" name="nome" size="42" maxlength="40" placeholder="Rua, Av., Tv., etc - Não é necessário informar número" />
             </p>
 
-            
+
             <p>
                 <input type="submit" name="btGravar" value="Gravar" />
                 <input type="reset" name="btLimpar" value="Limpar" />
@@ -53,6 +53,6 @@
 
         <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
     </body>
-
-    <%@include file="util/conexaoFinalizar.jsp"  %>
 </html>
+
+<%@include file="util/conexaoFinalizar.jsp"  %>

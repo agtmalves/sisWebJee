@@ -1,9 +1,3 @@
-<%-- 
-    Document   : clientesImprimir
-    Created on : 08/11/2020, 16:41:25
-    Author     : AGT
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*, java.util.*,java.util.Date, java.text.SimpleDateFormat" %>
 <%@include file="util/conexaoObjetos.jsp" %>
@@ -15,6 +9,7 @@
 
 <!DOCTYPE html>
 <%@include file="util/conexaoIniciar.jsp" %>
+
 <%    acao = request.getParameter("acao");
     ordem = request.getParameter("ordem");
     if (acao == null) {
@@ -211,4 +206,5 @@
         <p align="center">copyright&copy; 2020 - sisWebJee&reg;</b></p>
 </body>
 </html>
+
 <%@include file="util/conexaoFinalizar.jsp"  %>

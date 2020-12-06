@@ -1,9 +1,3 @@
-<%-- 
-    Document   : clientesCadastrar
-    Created on : 23/09/2020, 21:35:03
-    Author     : AGT
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.Date, java.text.SimpleDateFormat, java.sql.*" %>
 <%@include file="util/conexaoObjetos.jsp" %>
@@ -14,8 +8,8 @@
 %>
 
 <!DOCTYPE html>
-
 <%@include file="util/conexaoIniciar.jsp" %>
+
 <%    codigoNovo = request.getParameter("codigoNovo");
     if (codigoNovo == null) {
         codigoNovo = "0";
@@ -180,5 +174,6 @@
         <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
     </body>
 
-    <%@include file="util/conexaoFinalizar.jsp"  %>
 </html>
+
+<%@include file="util/conexaoFinalizar.jsp"  %>

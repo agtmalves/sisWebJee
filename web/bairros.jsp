@@ -1,9 +1,3 @@
-<%-- 
-    Document   : clientes
-    Created on : 07/09/2020, 22:28:02
-    Author     : AGT
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
 <%@include file="util/conexaoObjetos.jsp" %>
@@ -11,8 +5,8 @@
 %>
 
 <!DOCTYPE html>
-
 <%@include file="util/conexaoIniciar.jsp" %>
+
 <%    acao = request.getParameter("acao");
     if (acao == null) {
         acao = "listar";
@@ -59,7 +53,7 @@
                 <tr>
                     <td><a href="bairros.jsp?ordem=codigo">Código</a></td>
                     <td><a href="bairros.jsp?ordem=nome">Nome<a></td>
-                    <td>Opções</td>
+                                <td>Opções</td>
                                 </tr>
                                 <%
                                     int cont = 0;
@@ -68,7 +62,7 @@
                                 <tr>
                                     <td><%= resultado.getInt("codigo")%></td>
                                     <td><%= resultado.getString("nome")%></td>
-                                   
+
                                     <td>
                                         <a href="javascript:confirma('<%=resultado.getInt("codigo")%>', 'excluir','Confirmar Exclusão?','bairros.jsp')">
                                             [Excluir]  

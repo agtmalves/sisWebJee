@@ -1,74 +1,66 @@
-<%-- 
-    Document   : clientes
-    Created on : 07/09/2020, 22:28:02
-    Author     : AGT
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
 <%@include file="util/conexaoObjetos.jsp" %>
-<%!
-    String ordem, acao;
+<%!    String ordem, acao;
 %>
 
 <!DOCTYPE html>
-
 <%@include file="util/conexaoIniciar.jsp" %>
-<%
-           acao = request.getParameter("acao");
-        if (acao == null) {
-            acao = "listar";
-        }
-        if (acao.equals("excluir")) {
-            instrucao.executeUpdate("DELETE FROM cliente WHERE codigo=" + request.getParameter("codigo"));
-        } else if (acao.equals("gravar")) {
-            String sql = "INSERT INTO cliente ("
-                    + "nome,endereco,numero,complemento,bairro,cidade,estado,"
-                    + "rg,cpf,telfixo,telcel,email,sexo,datanasc,datacad,obs)"
-                    + "VALUES ('"
-                    + request.getParameter("nome").toUpperCase() + "',"
-                    + request.getParameter("endereco") + ",'"
-                    + request.getParameter("numero") + "','"
-                    + request.getParameter("complemento") + "',"
-                    + request.getParameter("bairro") + ","
-                    + request.getParameter("cidade") + ","
-                    + request.getParameter("estado") + ",'"
-                    + request.getParameter("rg") + "','"
-                    + request.getParameter("cpf") + "','"
-                    + request.getParameter("telfixo") + "','"
-                    + request.getParameter("telcel") + "','"
-                    + request.getParameter("email") + "','"
-                    + request.getParameter("sexo") + "','"
-                    + request.getParameter("datanasc") + "','"
-                    + request.getParameter("datacad") + "','"
-                    + request.getParameter("obs").trim() + "')";
-            instrucao.executeUpdate(sql);
-        } else if (acao.equals("alterar")) {
-            String sql = "UPDATE cliente SET "
-                    + "nome='" + request.getParameter("nome").toUpperCase() + "',"
-                    + "endereco=" + request.getParameter("endereco") + ","
-                    + "numero='" + request.getParameter("numero") + "',"
-                    + "complemento='" + request.getParameter("complemento") + "',"
-                    + "bairro=" + request.getParameter("bairro") + ","
-                    + "cidade=" + request.getParameter("cidade") + ","
-                    + "estado=" + request.getParameter("estado") + ","
-                    + "rg='" + request.getParameter("rg") + "',"
-                    + "cpf='" + request.getParameter("cpf") + "',"
-                    + "telfixo='" + request.getParameter("telfixo") + "',"
-                    + "telcel='" + request.getParameter("telcel") + "',"
-                    + "email='" + request.getParameter("email") + "',"
-                    + "sexo='" + request.getParameter("sexo") + "',"
-                    + "datanasc='" + request.getParameter("datanasc") + "',"
-                    + "datacad='" + request.getParameter("datacad") + "',"
-                    + "obs='" + request.getParameter("obs").trim() + "'"
-                    + "WHERE codigo=" + request.getParameter("codigoAlterar");
-            instrucao.executeUpdate(sql);
-        }
-        ordem = request.getParameter("ordem");
-        if (ordem == null) {
-            ordem = "codigo";
-        }
-        resultado = instrucao.executeQuery("SELECT * FROM cliente ORDER BY " + ordem);  //Initialize object to store DB's results
+
+<%    acao = request.getParameter("acao");
+    if (acao == null) {
+        acao = "listar";
+    }
+    if (acao.equals("excluir")) {
+        instrucao.executeUpdate("DELETE FROM cliente WHERE codigo=" + request.getParameter("codigo"));
+    } else if (acao.equals("gravar")) {
+        String sql = "INSERT INTO cliente ("
+                + "nome,endereco,numero,complemento,bairro,cidade,estado,"
+                + "rg,cpf,telfixo,telcel,email,sexo,datanasc,datacad,obs)"
+                + "VALUES ('"
+                + request.getParameter("nome").toUpperCase() + "',"
+                + request.getParameter("endereco") + ",'"
+                + request.getParameter("numero") + "','"
+                + request.getParameter("complemento") + "',"
+                + request.getParameter("bairro") + ","
+                + request.getParameter("cidade") + ","
+                + request.getParameter("estado") + ",'"
+                + request.getParameter("rg") + "','"
+                + request.getParameter("cpf") + "','"
+                + request.getParameter("telfixo") + "','"
+                + request.getParameter("telcel") + "','"
+                + request.getParameter("email") + "','"
+                + request.getParameter("sexo") + "','"
+                + request.getParameter("datanasc") + "','"
+                + request.getParameter("datacad") + "','"
+                + request.getParameter("obs").trim() + "')";
+        instrucao.executeUpdate(sql);
+    } else if (acao.equals("alterar")) {
+        String sql = "UPDATE cliente SET "
+                + "nome='" + request.getParameter("nome").toUpperCase() + "',"
+                + "endereco=" + request.getParameter("endereco") + ","
+                + "numero='" + request.getParameter("numero") + "',"
+                + "complemento='" + request.getParameter("complemento") + "',"
+                + "bairro=" + request.getParameter("bairro") + ","
+                + "cidade=" + request.getParameter("cidade") + ","
+                + "estado=" + request.getParameter("estado") + ","
+                + "rg='" + request.getParameter("rg") + "',"
+                + "cpf='" + request.getParameter("cpf") + "',"
+                + "telfixo='" + request.getParameter("telfixo") + "',"
+                + "telcel='" + request.getParameter("telcel") + "',"
+                + "email='" + request.getParameter("email") + "',"
+                + "sexo='" + request.getParameter("sexo") + "',"
+                + "datanasc='" + request.getParameter("datanasc") + "',"
+                + "datacad='" + request.getParameter("datacad") + "',"
+                + "obs='" + request.getParameter("obs").trim() + "'"
+                + "WHERE codigo=" + request.getParameter("codigoAlterar");
+        instrucao.executeUpdate(sql);
+    }
+    ordem = request.getParameter("ordem");
+    if (ordem == null) {
+        ordem = "codigo";
+    }
+    resultado = instrucao.executeQuery("SELECT * FROM cliente ORDER BY " + ordem);  //Initialize object to store DB's results
 %>
 
 <html>

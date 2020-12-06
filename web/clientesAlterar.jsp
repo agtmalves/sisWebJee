@@ -1,17 +1,8 @@
-<%-- 
-    Document   : clientesCadastrar
-    Created on : 23/09/2020, 21:35:03
-    Author     : AGT
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.Date, java.text.SimpleDateFormat, java.sql.*" %>
+<%@include file="util/conexaoObjetos.jsp" %>
 
 <%
-    Connection conexao = null;   //Variable for Connection with DB
-    Statement instrucao = null;  //Variable for Send and process SQL instructions which are sent to DB
-    ResultSet resultado = null;  //Variable for Store results
-
     Date datanasc, datacad;
     SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -20,36 +11,31 @@
 %>
 
 <!DOCTYPE html>
+<%@include file="util/conexaoIniciar.jsp" %>
 
-<%
-    try {
-        Class.forName("org.postgresql.Driver");     //Inform which driver load
-        conexao = DriverManager.getConnection("***REMOVED***");     //Path to connect with DB
-        instrucao = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);      //Initialize object to send SQL's code
+<%    codigo = request.getParameter("codigo");
 
-        codigo = request.getParameter("codigo");
-
-        if (codigo == null) {
-            codigo = "0";
-        }
-        resultado = instrucao.executeQuery("SELECT * FROM cliente WHERE codigo=" + codigo);
-        if (resultado.next()) {
-            nome = resultado.getString("nome");
-            endereco = resultado.getInt("endereco");
-            numero = resultado.getString("numero");
-            complemento = resultado.getString("complemento");
-            bairro = resultado.getInt("bairro");
-            cidade = resultado.getInt("cidade");
-            estado = resultado.getInt("estado");
-            rg = resultado.getString("rg");
-            cpf = resultado.getString("cpf");
-            telfixo = resultado.getString("telfixo");
-            telcel = resultado.getString("telcel");
-            email = resultado.getString("email");
-            sexo = resultado.getString("sexo");
-            datanasc = resultado.getDate("datanasc");
-            datacad = resultado.getDate("datacad");
-            obs = resultado.getString("obs");
+    if (codigo == null) {
+        codigo = "0";
+    }
+    resultado = instrucao.executeQuery("SELECT * FROM cliente WHERE codigo=" + codigo);
+    if (resultado.next()) {
+        nome = resultado.getString("nome");
+        endereco = resultado.getInt("endereco");
+        numero = resultado.getString("numero");
+        complemento = resultado.getString("complemento");
+        bairro = resultado.getInt("bairro");
+        cidade = resultado.getInt("cidade");
+        estado = resultado.getInt("estado");
+        rg = resultado.getString("rg");
+        cpf = resultado.getString("cpf");
+        telfixo = resultado.getString("telfixo");
+        telcel = resultado.getString("telcel");
+        email = resultado.getString("email");
+        sexo = resultado.getString("sexo");
+        datanasc = resultado.getDate("datanasc");
+        datacad = resultado.getDate("datacad");
+        obs = resultado.getString("obs");
 
 %>
 
@@ -199,8 +185,8 @@
 
             <p>
                 Sexo:
-                <input type="radio" name="sexo" id="sexo_M" value="M" <%if (sexo.equals("M"))
-                        out.print("checked= 'checked'");%> />
+                <input type="radio" name="sexo" id="sexo_M" value="M" <%if (sexo.equals("M")) {
+                               out.print("checked= 'checked'");%> />
                 Masculino
                 <input type="radio" name="sexo" id="sexo_F" value="F" <%if (sexo.equals("F"))
                         out.print("checked= 'checked'");%> />
@@ -225,28 +211,11 @@
                 out.println("Registro não encontrado!");
             }
         %>
-        
+
 
 
         <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
     </body>
-
-    <%
-        } catch (ClassNotFoundException ce) {
-            out.println("Não foi possível encontrar o driver PostgreSQL! " + ce);
-        } catch (SQLException se) {
-            out.println("Erro ao trabalhar com o banco de dados!" + se);
-        } finally {
-            if (resultado != null) {
-                resultado.close();
-            }
-            if (instrucao != null) {
-                instrucao.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
-        }
-
-    %>
 </html>
+
+<%@include file="util/conexaoFinalizar.jsp"  %>
