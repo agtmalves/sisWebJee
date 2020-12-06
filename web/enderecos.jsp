@@ -50,9 +50,9 @@
             <%
                 resultado.last();
             %>
-            <a href="enderecoCadastrar.jsp?codigoNovo=<%=resultado.getRow() + 1%> ">[Cadastrar]</a> |
+            <a href="enderecosCadastrar.jsp?codigoNovo=<%=resultado.getRow() + 1%> ">[Cadastrar]</a> |
             <% resultado.beforeFirst(); %>
-            <a href="enderecoImprimir.jsp">[Imprimir]</a>
+            <a href="enderecosImprimir.jsp">[Imprimir]</a>
         </p>
         <div align="center">
             <table border="1">
