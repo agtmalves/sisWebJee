@@ -16,7 +16,7 @@
     SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
 
     int endereco, bairro, cidade, estado;
-    String codigo,codigoAlterar, nome, numero, complemento, rg, cpf, telfixo, telcel, email, sexo, obs;
+    String codigo, nome, numero, complemento, rg, cpf, telfixo, telcel, email, sexo, obs;
 %>
 
 <!DOCTYPE html>
@@ -28,8 +28,7 @@
         instrucao = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);      //Initialize object to send SQL's code
 
         codigo = request.getParameter("codigo");
-        codigoAlterar= codigo;
-        
+
         if (codigo == null) {
             codigo = "0";
         }
@@ -51,7 +50,7 @@
             datanasc = resultado.getDate("datanasc");
             datacad = resultado.getDate("datacad");
             obs = resultado.getString("obs");
-        
+
 %>
 
 <html>
@@ -70,14 +69,15 @@
         <form name="formCadastrar" method="post" action="clientes.jsp?acao=alterar">
             <p>
                 Código:
-                <input type="text" name="codigoAlterar" value="<%= codigoAlterar%>" disabled="true" /> - 
+                <input type="text" name="codigo" value="<%= codigo%>" disabled="true" />-
+                <input type="hidden" name="codigoAlterar" value="<%= codigo%>" />  
                 Data de Cadastro: (dd-MM-aaaa)
                 <input type="text" name="datatela" value="<%= dataFormatada.format(datacad)%>" disabled="true" size="10" maxlength="10" />
                 <input type="hidden" name="datacad" value="<%= dataFormatada.format(datacad)%>" />
             </p>
             <p>
                 Nome:
-                <input type="text" name="nome" size="40" maxlength="40" value="<%=nome %>"/>
+                <input type="text" name="nome" size="40" maxlength="40" value="<%=nome%>"/>
             </p>
 
             <p>
@@ -88,9 +88,10 @@
                         if (resultadoEndereco != null) {
                             while (resultadoEndereco.next()) {
                                 int cod = resultadoEndereco.getInt("codigo");
-                            
+
                     %>
-                    <option value="<%= cod%>" <%if(endereco==cod) out.print("selected='selected'");%>>
+                    <option value="<%= cod%>" <%if (endereco == cod)
+                            out.print("selected='selected'");%>>
                         <%= resultadoEndereco.getString("nome")%>
                     </option>
                     <%
@@ -116,9 +117,10 @@
                         if (resultadoBairro != null) {
                             while (resultadoBairro.next()) {
                                 int cod = resultadoBairro.getInt("codigo");
-                            
+
                     %>
-                    <option value="<%= cod%>" <%if(bairro == cod) out.print("selected='selected'");%>>
+                    <option value="<%= cod%>" <%if (bairro == cod)
+                            out.print("selected='selected'");%>>
                         <%= resultadoBairro.getString("nome")%>
                     </option>
                     <%
@@ -136,9 +138,10 @@
                         if (resultadoCidade != null) {
                             while (resultadoCidade.next()) {
                                 int cod = resultadoCidade.getInt("codigo");
-                            
+
                     %>
-                    <option value="<%= cod%>" <%if(cidade ==cod) out.print("selected='selected'");%>>
+                    <option value="<%= cod%>" <%if (cidade == cod)
+                            out.print("selected='selected'");%>>
                         <%= resultadoCidade.getString("nome")%>
                     </option>
                     <%
@@ -157,9 +160,10 @@
                         if (resultadoEstado != null) {
                             while (resultadoEstado.next()) {
                                 int cod = resultadoEstado.getInt("codigo");
-                            
+
                     %>
-                    <option value="<%= cod%>" <%if(estado ==cod) out.print("selected= 'selected'"); %>>
+                    <option value="<%= cod%>" <%if (estado == cod)
+                            out.print("selected= 'selected'");%>>
                         <%= resultadoEstado.getString("nome")%>
                     </option>
                     <%
@@ -184,7 +188,7 @@
                 TelFixo: (xx-xxxx-xxxx) <input type="text" name="telfixo" size="12" maxlength="12" value="<%=telfixo%>"
                                                onkeypress="mascaraCampo(this, '##-####-####');
                                                        return somenteNumero(event);"/>
-                    TelCelular: (xx-Xxxxx-xxxx) <input type="text" name="telcel" size="13" maxlength="13" value="<%=telcel%>"
+                TelCelular: (xx-Xxxxx-xxxx) <input type="text" name="telcel" size="13" maxlength="13" value="<%=telcel%>"
                                                    onkeypress="mascaraCampo(this, '##-#####-####');
                                                            return somenteNumero(event);"/>
             </p>
@@ -195,9 +199,11 @@
 
             <p>
                 Sexo:
-                <input type="radio" name="sexo" id="sexo_M" value="M" <%if(sexo.equals("M")) out.print("checked= 'checked'");%> />
+                <input type="radio" name="sexo" id="sexo_M" value="M" <%if (sexo.equals("M"))
+                        out.print("checked= 'checked'");%> />
                 Masculino
-                <input type="radio" name="sexo" id="sexo_F" value="F" <%if(sexo.equals("F")) out.print("checked= 'checked'");%> />
+                <input type="radio" name="sexo" id="sexo_F" value="F" <%if (sexo.equals("F"))
+                        out.print("checked= 'checked'");%> />
                 Feminino -
                 Data de Nascimento: (dd-MM-aaaa)
                 <input type="text" name="datanasc" size="10" maxlength="10" 
@@ -214,19 +220,23 @@
                 <input type="submit" name="btAlterar" value="Alterar" />
             </p>
         </form>
+        <%
+            } else {
+                out.println("Registro não encontrado!");
+            }
+        %>
+        
 
 
         <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
     </body>
 
     <%
-        }
-
-        }catch (ClassNotFoundException ce) {
+        } catch (ClassNotFoundException ce) {
             out.println("Não foi possível encontrar o driver PostgreSQL! " + ce);
-        }catch (SQLException se) {
+        } catch (SQLException se) {
             out.println("Erro ao trabalhar com o banco de dados!" + se);
-        }finally {
+        } finally {
             if (resultado != null) {
                 resultado.close();
             }
