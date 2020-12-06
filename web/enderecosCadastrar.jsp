@@ -40,7 +40,7 @@
             </p>
             <p>
                 Endereço:
-                <input type="text" name="nome" size="40" maxlength="40" value="Rua, Av., Tv., etc - Não é necessário informar número" />
+                <input type="text" name="nome" size="42" maxlength="40" placeholder="Rua, Av., Tv., etc - Não é necessário informar número" />
             </p>
 
             
