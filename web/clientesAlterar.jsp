@@ -185,7 +185,7 @@
 
             <p>
                 Sexo:
-                <input type="radio" name="sexo" id="sexo_M" value="M" <%if (sexo.equals("M")) {
+                <input type="radio" name="sexo" id="sexo_M" value="M" <%if (sexo.equals("M"))
                                out.print("checked= 'checked'");%> />
                 Masculino
                 <input type="radio" name="sexo" id="sexo_F" value="F" <%if (sexo.equals("F"))
