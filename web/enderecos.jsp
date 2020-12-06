@@ -21,7 +21,7 @@
         instrucao.executeUpdate("DELETE FROM endereco WHERE codigo=" + request.getParameter("codigo"));
     } else if (acao.equals("gravar")) {
         String sql = "INSERT INTO endereco ("
-                + "nome"
+                + "nome)"
                 + "VALUES ('"
                 + request.getParameter("nome") + "')";
         instrucao.executeUpdate(sql);
