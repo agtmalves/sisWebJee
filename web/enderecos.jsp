@@ -77,7 +77,7 @@
                                     }
                                 %>    
                                 <tr>
-                                    <td colspan="5">Quantidade de Endereços cadastrados é: <%= cont%> </td>
+                                    <td colspan="3">Quantidade de Endereços cadastrados é: <%= cont%> </td>
                                 </tr>
                                 </table>
                                 </div>
