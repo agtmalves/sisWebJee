@@ -15,7 +15,7 @@
         instrucao.executeUpdate("DELETE FROM bairro WHERE codigo=" + request.getParameter("codigo"));
     } else if (acao.equals("gravar")) {
         String sql = "INSERT INTO bairro ("
-                + "nome"
+                + "nome)"
                 + "VALUES ('"
                 + request.getParameter("nome") + "')";
         instrucao.executeUpdate(sql);
