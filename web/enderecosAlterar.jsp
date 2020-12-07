@@ -54,7 +54,8 @@
             }
         %>
 
-
+        <p align="center"><a href="enderecos.jsp">[Voltar]</a></p>
+        <p align="center"><a href="index.html">[Menu Princial]</a></p>
 
         <p align="center"><b>copyright&copy; 2020 - sisWebJee&reg;</b></p>
     </body>
