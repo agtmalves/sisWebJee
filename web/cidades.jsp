@@ -15,7 +15,7 @@
         instrucao.executeUpdate("DELETE FROM cidade WHERE codigo=" + request.getParameter("codigo"));
     } else if (acao.equals("gravar")) {
         String sql = "INSERT INTO cidade ("
-                + "nome"
+                + "nome)"
                 + "VALUES ('"
                 + request.getParameter("nome") + "')";
         instrucao.executeUpdate(sql);
