@@ -35,7 +35,7 @@
                 + request.getParameter("datacad") + "','"
                 + request.getParameter("obs").trim() + "')";
         instrucao.executeUpdate(sql);
-    } else if (acao.equals("alterar")) {
+    } else if (acao.equals("editar")) {
         String sql = "UPDATE cliente SET "
                 + "nome='" + request.getParameter("nome").toUpperCase() + "',"
                 + "endereco=" + request.getParameter("endereco") + ","
@@ -53,7 +53,7 @@
                 + "datanasc='" + request.getParameter("datanasc") + "',"
                 + "datacad='" + request.getParameter("datacad") + "',"
                 + "obs='" + request.getParameter("obs").trim() + "'"
-                + "WHERE codigo=" + request.getParameter("codigoAlterar");
+                + "WHERE codigo=" + request.getParameter("codigoEditar");
         instrucao.executeUpdate(sql);
     }
     ordem = request.getParameter("ordem");
@@ -71,6 +71,9 @@
     </head>
     <body>
         <h1 align="center">Sistema de Cadastro de Clientes</h1>
+        <h2 align="center">
+            <font style="color: dodgerblue">Lista de Clientes</font>
+        </h2>
         <p align="center">
             <%
                 resultado.last();
@@ -105,8 +108,8 @@
                                         <a href="javascript:confirma('<%=resultado.getInt("codigo")%>', 'excluir','Confirmar Exclusão?','clientes.jsp')">
                                             [Excluir]  
                                         </a> |
-                                        <a href="javascript:confirma('<%= resultado.getInt("codigo")%>','alterar','Confirmar Alteração?','clientesAlterar.jsp')">
-                                            [Alterar]
+                                        <a href="javascript:confirma('<%= resultado.getInt("codigo")%>','editar','Confirmar Edição?','clientesEditar.jsp')">
+                                            [Editar]
                                         </a>
                                     </td>
                                 </tr>

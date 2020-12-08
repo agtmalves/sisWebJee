@@ -146,7 +146,7 @@
             resultado = instrucao.executeQuery("SELECT " + campos + " FROM cliente ORDER BY " + ordem);
         %>
         <div align="center">
-            <h2><font style="color:dodgerblue">Relatório de Cadastro de Clientes</font></h2>
+            <h2><font style="color:dodgerblue">Relatório de Clientes Cadastrados</font></h2>
 
             <table border="2">
                 <tr>

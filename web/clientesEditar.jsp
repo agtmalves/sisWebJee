@@ -47,16 +47,16 @@
     </head>
     <body>
 
-        <h1 align="center">Sistema de Cadastro de Clientes</h1><br>
+        <h1 align="center">Sistema de Cadastro de Clientes</h1>
         <h2 align="center">
-            <font style="color: dodgerblue">Alterar Cadastro de Cliente</font>
+            <font style="color: dodgerblue">Editar Cadastro de Cliente</font>
         </h2>
 
-        <form name="formCadastrar" method="post" action="clientes.jsp?acao=alterar">
+        <form name="formCadastrar" method="post" action="clientes.jsp?acao=editar">
             <p>
                 Código:
                 <input type="text" name="codigo" value="<%= codigo%>" disabled="true" />-
-                <input type="hidden" name="codigoAlterar" value="<%= codigo%>" />  
+                <input type="hidden" name="codigoEditar" value="<%= codigo%>" />  
                 Data de Cadastro: (dd-MM-aaaa)
                 <input type="text" name="datatela" value="<%= dataFormatada.format(datacad)%>" disabled="true" size="10" maxlength="10" />
                 <input type="hidden" name="datacad" value="<%= dataFormatada.format(datacad)%>" />
@@ -203,7 +203,7 @@
             </p>
 
             <p>
-                <input type="submit" name="btAlterar" value="Alterar" />
+                <input type="submit" name="btEditar" value="Gravar" />
             </p>
         </form>
         <%
