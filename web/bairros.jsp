@@ -19,10 +19,10 @@
                 + "VALUES ('"
                 + request.getParameter("nome") + "')";
         instrucao.executeUpdate(sql);
-    } else if (acao.equals("alterar")) {
+    } else if (acao.equals("editar")) {
         String sql = "UPDATE bairro SET "
                 + "nome='" + request.getParameter("nome") + "'"
-                + "WHERE codigo=" + request.getParameter("codigoAlterar");
+                + "WHERE codigo=" + request.getParameter("codigoEditar");
         instrucao.executeUpdate(sql);
     }
     ordem = request.getParameter("ordem");
@@ -40,6 +40,9 @@
     </head>
     <body>
         <h1 align="center">Sistema de Cadastro de Clientes</h1>
+         <h2 align="center">
+            <font style="color: dodgerblue">Lista de Bairros</font>
+        </h2>
         <p align="center">
             <%
                 resultado.last();
@@ -67,8 +70,8 @@
                                         <a href="javascript:confirma('<%=resultado.getInt("codigo")%>', 'excluir','Confirmar Exclusão?','bairros.jsp')">
                                             [Excluir]  
                                         </a> |
-                                        <a href="javascript:confirma('<%= resultado.getInt("codigo")%>','alterar','Confirmar Alteração?','bairrosAlterar.jsp')">
-                                            [Alterar]
+                                        <a href="javascript:confirma('<%= resultado.getInt("codigo")%>','editar','Confirmar Edição?','bairrosEditar.jsp')">
+                                            [Editar]
                                         </a>
                                     </td>
                                 </tr>

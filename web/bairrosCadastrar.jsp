@@ -25,9 +25,9 @@
     </head>
     <body>
 
-        <h1 align="center">Sistema de Cadastro de Clientes</h1><br>
+        <h1 align="center">Sistema de Cadastro de Clientes</h1>
         <h2 align="center">
-            <font style="color: dodgerblue">Cadastrar novo bairro</font>
+            <font style="color: dodgerblue">Cadastrar Novo Bairro</font>
         </h2>
 
         <form name="formCadastrar" method="post" action="bairros.jsp?acao=gravar">
