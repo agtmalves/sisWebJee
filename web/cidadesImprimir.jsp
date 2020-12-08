@@ -28,7 +28,7 @@
     <body>
         <div align="center">
             <h1 align="center">Sistema de Cadastro de Clientes</h1>
-            <h2><font style="color:dodgerblue">Relatório de Cadastro de Cidades</font></h2>
+            <h2><font style="color:dodgerblue">Relatório de Cidades Cadastradas</font></h2>
 
             <table border="1">
                 <tr>

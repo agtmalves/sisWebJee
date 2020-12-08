@@ -25,7 +25,7 @@
     </head>
     <body>
 
-        <h1 align="center">Sistema de Cadastro de Clientes</h1><br>
+        <h1 align="center">Sistema de Cadastro de Clientes</h1>
         <h2 align="center">
             <font style="color: dodgerblue">Cadastrar Nova Cidade</font>
         </h2>

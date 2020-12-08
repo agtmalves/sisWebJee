@@ -30,14 +30,14 @@
 
         <h1 align="center">Sistema de Cadastro de Clientes</h1><br>
         <h2 align="center">
-            <font style="color: dodgerblue">Alterar Cadastro de Cidade</font>
+            <font style="color: dodgerblue">Editar Cadastro de Cidade</font>
         </h2>
 
-        <form name="formCadastrar" method="post" action="cidades.jsp?acao=alterar">
+        <form name="formCadastrar" method="post" action="cidades.jsp?acao=editar">
             <p>
                 Código:
                 <input type="text" name="codigo" value="<%= codigo%>" disabled="true" />
-                <input type="hidden" name="codigoAlterar" value="<%= codigo%>" />  
+                <input type="hidden" name="codigoEditar" value="<%= codigo%>" />  
             </p>
             <p>
                 Cidade:
@@ -45,7 +45,7 @@
             </p>
 
             <p>
-                <input type="submit" name="btAlterar" value="Alterar" />
+                <input type="submit" name="btEditar" value="Gravar" />
             </p>
         </form>
         <%
