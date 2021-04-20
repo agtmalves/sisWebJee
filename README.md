@@ -1,4 +1,4 @@
-# MVC Web Application-JSP
+# Page-Centric Web Application-JSP
 
 Project developed with learning purposes.
 It's a Web Application in which you make customers registrations and control, with tables to address, neighborhood, and cities.
