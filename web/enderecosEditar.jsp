@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.Date, java.text.SimpleDateFormat, java.sql.*" %>
 <%@include file="util/conexaoObjetos.jsp" %>
+<%@include file="util/config.jsp" %>
 
 <%
     String codigo, nome;

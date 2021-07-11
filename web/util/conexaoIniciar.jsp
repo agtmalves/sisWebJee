@@ -8,7 +8,7 @@
 <%
     try {
         Class.forName("org.postgresql.Driver");     //Inform which driver load
-        conexao = DriverManager.getConnection("***REMOVED***");     //Path to connect with DB
+        conexao = DriverManager.getConnection(pathLoginPass);     //Path to connect with DB
         instrucao = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);      //Initialize object to send SQL's code
 %>
 

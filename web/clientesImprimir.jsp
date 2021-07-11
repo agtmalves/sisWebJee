@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*, java.util.*,java.util.Date, java.text.SimpleDateFormat" %>
 <%@include file="util/conexaoObjetos.jsp" %>
+<%@include file="util/config.jsp" %>
 <%!    Date data;
     SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
 
